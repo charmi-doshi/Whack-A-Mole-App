@@ -1,7 +1,8 @@
-import gsap from "https://cdn.skypack.dev/gsap";
+import gsap from "gsap";
 import { render } from "@testing-library/react";
 import React, { Fragment, useState,useEffect,useRef } from "react";
 import Timer from "./Timer";
+import gsapCore from "gsap/gsap-core";
 
 
 //constants
@@ -73,58 +74,16 @@ const Mole = ({ onWhack, points, delay, speed, pointsMin = 10 }) => {
         ref={buttonRef}
         onClick={whack}
       >
-        Mole
       </button>
     </div>
   )
 }
-// const Mole = ({ onWhack, points, delay, speed, pointsMin = 10 }) => {
-//   const bobRef = useRef(null)
-//   const pointsRef = useRef(points)
-//   const buttonRef = useRef(null)
-//   useEffect(() => {
-//     gsap.set(buttonRef.current, {
-//       yPercent: 100,
-//       display: 'block'
-//     })
-//     bobRef.current = gsap.to(buttonRef.current, {
-//       yPercent: 0,
-//       duration: speed,
-//       yoyo: true,
-//       repeat: -1,
-//       delay: delay,
-//       repeatDelay: delay,
-//       onRepeat: () => {
-//         pointsRef.current = Math.floor(
-//           Math.max(pointsRef.current * POINTS_MULTIPLIER, pointsMin)
-//         )
-//       },
-//     })
-//     return () => {
-//       if (bobRef.current) bobRef.current.kill()
-//     }
-//   }, [])
-//   const whack = ()=>{
-//     setWhacked(true)
-//     onWhack(pointsRef.current)
-//   }
-//   return (
-//     <div className="mole-hole">
-//       <button
-//         className="mole"
-//         ref={buttonRef}
-//         onClick={whack}
-//       >
-//         Mole
-//       </button>
-//     </div>
-//   )
-// }
-const Score = ({ value }) => <div>{`Score: ${value}`}</div>;
+
+const Score = ({ value }) => <div className="score">{`Score: ${value}`}</div>;
 
 const TIME_LIMIT = 30000;
 const MOLE_SCORE = 100;
-const NUMBER_OF_MOLES = 6
+const NUMBER_OF_MOLES = 8
 
 function Game() {
   //screen and score
@@ -152,34 +111,39 @@ function Game() {
       {!playing && !finished && (
         <Fragment>
           <h1>Lets go!</h1>
-          <button onClick={startGame}>Start Game</button>
+          <button className="start-game" onClick={startGame}>Start Game</button>
         </Fragment>
       )}
 
       {playing && (
         <Fragment>
-          <button className="end-game" onClick={endGame}>
-            End Game
-          </button>
+          <div className="header">
           <Score value={score} />
-          <Timer time={TIME_LIMIT} onEnd={endGame} />
+          <Timer  time={TIME_LIMIT} onEnd={endGame} />
+          </div>
           <Moles>
           {new Array(NUMBER_OF_MOLES).fill().map((_, index) => (
+            <div className="mole-hole" key={index}>
               <Mole
                 key={index}
                 onWhack={onWhack}
                 points={MOLE_SCORE}
                 delay={0}
                 speed={2}
+                className="mole"
               />
+              </div>
             ))}
           </Moles>
+          <button className="end-game" onClick={endGame}>
+            End Game
+          </button>
         </Fragment>
       )}
       {finished && (
         <Fragment>
-          <Score value={score} />
-          <button onClick={startGame}>Play again</button>
+          <Score className="score-1" value={score} />
+          <button className="play-again" onClick={startGame}>Play again</button>
         </Fragment>
       )}
     </Fragment>

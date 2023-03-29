@@ -1,10 +1,10 @@
-import './App.css';
+import './App.scss';
 import React,{Fragment} from 'react';
 import Game from './Components/Game';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
     <Game/>
     </div>
   );

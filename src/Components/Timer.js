@@ -19,7 +19,7 @@ const Timer = ({ time, interval = 1000, onEnd }) => {
       clearInterval(timerRef.current)
     }
   }, [interval])
-  return <span>{`Time:${Math.abs(Math.floor(internalTime/1000))}s`}</span>;
+  return <div className="timer">{`Time:${Math.abs(Math.floor(internalTime/1000))}s`}</div>;
 };
 
 export default Timer;
