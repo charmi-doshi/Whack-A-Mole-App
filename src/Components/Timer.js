@@ -14,12 +14,16 @@ const Timer = ({ time, interval = 1000, onEnd }) => {
     timerRef.current = setInterval(
       () => setInternalTime((timerRef.current -= interval)),
       interval
-    )
+    );
     return () => {
-      clearInterval(timerRef.current)
-    }
-  }, [interval])
-  return <div className="timer">{`Time:${Math.abs(Math.floor(internalTime/1000))}s`}</div>;
+      clearInterval(timerRef.current);
+    };
+  }, [interval]);
+  return (
+    <div className="timer">{`Time:${Math.abs(
+      Math.floor(internalTime / 1000)
+    )}s`}</div>
+  );
 };
 
 export default Timer;

@@ -1,11 +1,11 @@
-import './App.scss';
-import React,{Fragment} from 'react';
-import Game from './Components/Game';
+import "./App.scss";
+import React, { Fragment } from "react";
+import Game from "./Components/Game";
 
 function App() {
   return (
-    <div className='App'>
-    <Game/>
+    <div className="App">
+      <Game />
     </div>
   );
 }
