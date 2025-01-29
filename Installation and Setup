@@ -1,0 +1,15 @@
+## Installation & Setup
+
+### Prerequisites:
+- Node.js (v14 or above)
+- npm (v6 or above)
+
+### Steps:
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/your-username/whack-a-mole.git
+  cd whack-a-mole
+  npm install
+  npm start
+
+Open http://localhost:3000 in your browser to play the game.
